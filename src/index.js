@@ -1,8 +1,13 @@
+// primeiro commit 
 const express = require('express');
 const bodyParser = require('body-parser');
+const talkerRouter = require('./router/talker.router');
+const loginRouter = require('./router/login.router');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(talkerRouter);
+app.use(loginRouter);
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';
@@ -15,3 +20,6 @@ app.get('/', (_request, response) => {
 app.listen(PORT, () => {
   console.log('Online');
 });
+
+app.use('/talker', talkerRouter);
+app.use('/login', loginRouter);
